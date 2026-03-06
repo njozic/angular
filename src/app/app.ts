@@ -11,10 +11,28 @@ export class App {
   protected readonly title = signal('Mein erster Angular-Kurs, aber es wird nicht der letzte sein!');
   protected count = signal(0);
 
-
+  protected todoList = signal(
+    [
+      'Angular lernen',
+      'Pizza essen',
+      'Sport machen'
+    ]
+  );
 
   protected changeTitle(): void {
     this.title.set('Der Titel wurde geändert!');
+  }
+
+  protected increaseCount(): void {
+    this.count.update(value => value+1);
+  }
+
+  protected decreaseCount(): void {
+    this.count.update(value => value-1);
+  }
+
+  protected resetCount(): void {
+    this.count.set(0);
   }
 
 }
