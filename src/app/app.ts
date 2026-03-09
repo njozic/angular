@@ -10,7 +10,6 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('Mein erster Angular-Kurs, aber es wird nicht der letzte sein!');
   protected count = signal(0);
-
   protected todoList = signal(
     [
       'Angular lernen',
@@ -33,6 +32,14 @@ export class App {
 
   protected resetCount(): void {
     this.count.set(0);
+  }
+
+  protected addToDo(newTodo: string): void {
+    this.todoList.update(oldArray => [...oldArray, newTodo]);
+  }
+
+  protected removeTodo(todoToRemove: string): void {
+    this.todoList.update(oldArray => oldArray.filter(t => t !== todoToRemove));
   }
 
 }

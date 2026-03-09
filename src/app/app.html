@@ -1,23 +1,46 @@
 <main class="main">
-  <h1>Willkommen bei meinem Angular-Kurs!</h1>
-  <p>Das Projekt heißt: {{ title() }}</p>
-  <button class="btn btn-secondary" (click)="changeTitle()">Klick mich!</button>
+  <h1 class="m-3">Willkommen bei meinem Angular-Kurs!</h1>
+  <span class="border-bottom d-flex w-100 "></span>
+  <div class="container mt-3">
+    <p class="lead mt-3 pb-2 border-bottom d-flex w-50">Beispiele mit Events</p>
+    <p>Das Projekt heißt: {{ title() }}</p>
+    <button class="btn btn-secondary" (click)="changeTitle()">Klick mich!</button>
 
-<div class="container mt-3">
-  <button class="btn btn-primary" (click)="increaseCount()">count erhöhen</button>
-  <button class="btn btn-danger" (click)="decreaseCount()">count veringern</button>
-  <button class="btn btn-success" (click)="resetCount()">Reset count</button>
-  @if( count() >= 10){
-    <p class="alert alert-success">Glückwunsch du hast 10 erreicht!</p>
-  }
-  <p class="mt-3 alert alert-info">Count: {{count()}}</p>
+    <p class="lead mt-3 pb-2 border-bottom d-flex w-50">Beispiele mit Signale</p>
+    <div class="container">
+      <button class="btn btn-primary w-20" (click)="increaseCount()">count erhöhen</button>
+      <button class="btn btn-danger" (click)="decreaseCount()">count veringern</button>
+      <button class="btn btn-success" (click)="resetCount()">Reset count</button>
+    </div>
 
-  <ul class="list-group">
-    @for (todo of todoList(); track todo) {
-      <li class="list-group-item">{{todo}}</li>
+    @if( count() >= 10){
+      <p class="alert alert-success">Glückwunsch du hast 10 erreicht!</p>
     }
-  </ul>
-</div>
+    <p class="mt-3 alert alert-info">Count: {{count()}}</p>
+
+    <p class="lead mt-3 pb-2 border-bottom d-flex w-50">Eingaben mit Angular</p>
+    <div class="input-group mb-3 d-flex w-sm-100 w-lg-50">
+      <span class="input-group-text" id="basic-addon1">Eintrag</span>
+      <input #meinInput type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+      <button (click)="addToDo(meinInput.value); meinInput.value=''" class="btn btn-outline-secondary" type="button">Hinzufügen</button>
+    </div>
+
+    <p class="lead mt-3 pb-2 border-bottom d-flex w-50">Listen ausgeben</p>
+    <span class="border-bottom d-flex w-50 "></span>
+    <ul class="list-group">
+      @for (todo of todoList(); track todo) {
+        <li class="list-group-item d-flex justify-content-between">{{todo}}
+          <button (click)="removeTodo(todo)" class="btn btn-sm btn-outline-danger">Entfernen</button>
+        </li>
+      }
+    </ul>
+
+
+
+  </div>
+
+
+
 
 
 
