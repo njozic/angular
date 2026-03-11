@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { RecipeModel } from './models';
+import {MOCK_RECIPES} from './mock-recipes';
 
 @Component({
   selector: 'app-root',
@@ -9,42 +11,38 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('My Recipe Box!');
-  protected count = signal(0);
-  protected todoList = signal(
-    [
-      'Angular lernen',
-      'Pizza essen',
-      'Sport machen'
-    ]
-  );
+  protected readonly show = signal(false);
+  protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  protected servings = signal<number>(1);
+
 
   protected logMessage(message: string): void {
     console.log(message);
   }
 
-
-  protected changeTitle(): void {
-    this.title.set('Der Titel wurde geändert!');
+  protected setRecipe(id: number): void {
+    this.recipe.set(MOCK_RECIPES[id]);
+    this.show.set(true);
+    this.servings.set(1);
+  }
+  
+  protected increase(): void {
+    this.servings.update((s) => s + 1);
   }
 
-  protected increaseCount(): void {
-    this.count.update(value => value+1);
+  protected decrease(): void {
+    if (this.servings() > 0 && this.servings() !== 1) {
+      this.servings.update((s) => s - 1);
+    }
   }
 
-  protected decreaseCount(): void {
-    this.count.update(value => value-1);
-  }
-
-  protected resetCount(): void {
-    this.count.set(0);
-  }
-
-  protected addToDo(newTodo: string): void {
-    this.todoList.update(oldArray => [...oldArray, newTodo]);
-  }
-
-  protected removeTodo(todoToRemove: string): void {
-    this.todoList.update(oldArray => oldArray.filter(t => t !== todoToRemove));
-  }
+  protected adjustingredients = computed(() => {
+    const currentRecipe = this.recipe();
+    const currentServings = this.servings();
+    return currentRecipe.ingredients.map(ing => ({
+      ...ing,
+      quantity: ing.quantity * currentServings
+    }));
+  });
 
 }

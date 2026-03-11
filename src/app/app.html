@@ -1,14 +1,60 @@
-
-
-
 <div class="container">
     <h1 class="m-3">{{title()}}</h1>
     <hr/>
     <div class="d-flex flex-column align-items-start gap-3">
-        <button (click)="logMessage('Action A')" class="btn btn-outline-secondary">Aktion A</button>
-        <button (click)="logMessage('Action B')" class="btn btn-outline-secondary">Aktion B</button>
-
+        <button (click)="setRecipe(0)" class="btn btn-outline-secondary">Recipe 1</button>
+        <button (click)="setRecipe(1)" class="btn btn-outline-secondary">Recipe 2</button>
     </div>
+    <hr/>
+    @if (show()==true) {
+        <div class="card w-100 d-inline-block" style="width: 18rem;">
+            <img src="{{recipe().imageUrl}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{recipe().name}}</h5>
+                <p>{{recipe().description}}</p>
+                <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Ingredients
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body co">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of adjustingredients(); track item) {
+                                <tr>
+                                    <th scope="row">{{item.name}}</th>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.unit}}</td>
+                                </tr>
+                                }
+                            </tbody>
+                            <div class="d-flex align-items-center gap-2 mt-3 ms-3">
+                                <button (click)="decrease()" class="btn btn-outline-danger btn-lg px-3" style="width: 3rem;">-</button>
+                                <button (click)="increase()" class="btn btn-outline-success btn-lg px-3" style="width: 3rem;">+</button>
+                                <span class="ms-2">Servings: {{servings()}}</span>
+                            </div>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
 </div>
 
 <router-outlet />
