@@ -8,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Mein erster Angular-Kurs, aber es wird nicht der letzte sein!');
+  protected readonly title = signal('My Recipe Box!');
   protected count = signal(0);
   protected todoList = signal(
     [
@@ -17,6 +17,11 @@ export class App {
       'Sport machen'
     ]
   );
+
+  protected logMessage(message: string): void {
+    console.log(message);
+  }
+
 
   protected changeTitle(): void {
     this.title.set('Der Titel wurde geändert!');
