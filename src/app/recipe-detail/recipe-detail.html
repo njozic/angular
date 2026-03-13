@@ -1,7 +1,7 @@
-        <div class="card w-100 w-md-70 d-inline-block" >
+        <div class="card card-container d-flex justify-content-center align-items-center" >
             <img [src]="activeRecipe()?.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{activeRecipe()?.name}}</h5>
+                <h5 class="card-title title">{{activeRecipe()?.name}}</h5>
                 <p>{{activeRecipe()?.description}}</p>
                 <div class="accordion" id="accordionExample">
                 <div class="accordion-item">

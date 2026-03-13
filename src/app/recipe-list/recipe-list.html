@@ -5,5 +5,8 @@
     </div>
     <hr/>
     @if (show()==true) {
+        <div class="card-container">
         <app-recipe-detail [activeRecipe]="recipe()"></app-recipe-detail>
+        </div>
+
     }
