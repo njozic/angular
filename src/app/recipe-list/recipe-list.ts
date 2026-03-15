@@ -1,5 +1,6 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Recipe } from '../recipe'
 
 import { RecipeModel } from '../models';
 import { MOCK_RECIPES} from '../mock-recipes';
@@ -19,7 +20,10 @@ export class RecipeList {
   // Alternatively, you could initialize it with null and handle that case in the template
   protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
 
-  protected recipes = signal<RecipeModel[]>(MOCK_RECIPES);
+  //protected recipes = signal<RecipeModel[]>(MOCK_RECIPES);
+
+  protected recipes = inject(Recipe).recipes; // Access the recipes signal from the Recipe service
+
   protected searchTerm = signal('');
 
   protected filteredRecipes = computed(() => {
