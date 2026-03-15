@@ -18,7 +18,7 @@
         }
 
         @for(recipe of filteredRecipes(); track recipe){
-            <button (click)="setRecipe(recipe)" class="btn btn-outline-secondary">{{recipe.name}}</button>
+            <button [routerLink]="['/recipes', recipe.id]" class="btn btn-outline-secondary">{{recipe.name}}</button>
         }
     </div>
 

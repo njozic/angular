@@ -1,5 +1,6 @@
 import { Component, signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, RouterLink } from '@angular/router';
 import { Recipe } from '../recipe'
 
 import { RecipeModel } from '../models';
@@ -8,7 +9,7 @@ import { RecipeDetail } from '../recipe-detail/recipe-detail';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [ RecipeDetail, FormsModule],
+  imports: [ RecipeDetail, FormsModule, RouterModule, RouterLink],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
 })
