@@ -1,6 +1,5 @@
 
-    <div class="input-group">
-        <span class="input-group-text">Suche</span>
+    <div class="d-flex gap-3 justify-content-center w-100">
         <input [ngModel]="searchTerm()" (ngModelChange)="updateSearch($event)" type="text" class="form-control">
     </div>
     @if(searchTerm() !== ''){
@@ -21,10 +20,4 @@
             <button [routerLink]="['/recipes', recipe.id]" class="btn btn-outline-secondary">{{recipe.name}}</button>
         }
     </div>
-
     <hr/>
-    @if (show()==true) {
-        <div class="card-container">
-        <app-recipe-detail [activeRecipe]="recipe()"></app-recipe-detail>
-        </div>
-    }

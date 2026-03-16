@@ -7,4 +7,8 @@ import { MOCK_RECIPES} from './mock-recipes'
 })
 export class Recipe {
   recipes = signal<RecipeModel[]>(MOCK_RECIPES);
+
+  addRecipe(recipe: RecipeModel): void {
+    this.recipes.update(list => [...list, recipe]);
+  }
 }

@@ -1,0 +1,17 @@
+
+<form [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input formControlName="name" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Description</label>
+    <input formControlName="description" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Image</label>
+    <input formControlName="imageUrl" type="text" class="form-control">
+  </div>
+  <button type="submit" [disabled]="!recipeForm.valid" class="btn btn-primary">Speichern</button>
+  <button type="button" class="btn btn-secondary" (click)="cancel()">Abbrechen</button>
+</form>

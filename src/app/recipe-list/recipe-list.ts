@@ -4,12 +4,10 @@ import { RouterModule, RouterLink } from '@angular/router';
 import { Recipe } from '../recipe'
 
 import { RecipeModel } from '../models';
-import { MOCK_RECIPES} from '../mock-recipes';
-import { RecipeDetail } from '../recipe-detail/recipe-detail';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [ RecipeDetail, FormsModule, RouterModule, RouterLink],
+  imports: [ FormsModule, RouterModule, RouterLink],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
 })
@@ -19,7 +17,7 @@ export class RecipeList {
 
   // Initialize the recipe signal with the first recipe from the mock data
   // Alternatively, you could initialize it with null and handle that case in the template
-  protected recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  protected recipe = signal<RecipeModel | null>(null);
 
   //protected recipes = signal<RecipeModel[]>(MOCK_RECIPES);
 
