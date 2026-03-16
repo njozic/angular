@@ -1,4 +1,5 @@
 import { Component, signal, computed, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, RouterLink } from '@angular/router';
 import { Recipe } from '../recipe'
@@ -7,7 +8,7 @@ import { RecipeModel } from '../models';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [ FormsModule, RouterModule, RouterLink],
+  imports: [ FormsModule, RouterModule, RouterLink, MatButtonModule ],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
 })
